@@ -1,5 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useLayoutEffect } from 'react';
+import { View, Text, StyleSheet, FlatList } from 'react-native'
+import HobbyItem from '../components/HobbyItem';
+import { Categories, Hobbies } from '../model/data/dummyData';
 
 const Styles = StyleSheet.create({
     container: {
@@ -8,11 +10,33 @@ const Styles = StyleSheet.create({
     }
 });
 
-export const HobbyDetails = ({route}:any) => {
+export const HobbyDetails = ({route, navigation}:any) => {
     const categoryId = route.params.categoryId;
+    const hobbiesByCategory = Hobbies.filter((hobby) =>{
+        return hobby.categoryIds.indexOf(categoryId) >= 0;
+    });
+    useLayoutEffect(()=>{
+        const categoryTitle = Categories.find(
+            (currentCategory) => currentCategory.id === categoryId
+        )?.title;
+        if (categoryTitle != undefined) {
+            navigation.setOptions({
+                title: categoryTitle,
+            });
+        }
+    },[categoryId]);
+    const renderHobbyItem = (hobby: any) =>{
+        return(<HobbyItem {...hobby.item}/>)
+    }
+    
     return(
         <View style={Styles.container}>
-            <Text>Identificador de la categoria: {categoryId}</Text>
+            <FlatList
+                data = {hobbiesByCategory}
+                keyExtractor={(hobby)=>hobby.id}
+                renderItem={renderHobbyItem}
+            />
         </View>
     );
 }
+export default HobbyDetails;

@@ -10,7 +10,13 @@ export const StackNavigation = () =>{
     return(
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name = 'Categories' component={CategoriesScreen}/>
+                <Stack.Screen name = 'Categories' component={CategoriesScreen}
+                    options={{
+                        title: 'Mis categorias',
+                        headerTitleAlign:'center',
+                        headerStyle:{backgroundColor:'#4484AD'},
+                        headerTintColor:'white',
+                    }}/>
                 <Stack.Screen name = 'Details' component={HobbyDetails}/>
             </Stack.Navigator>
         </NavigationContainer>

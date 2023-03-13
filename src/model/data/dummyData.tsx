@@ -10,6 +10,12 @@ export const Categories = [
 ];
 
 export const Hobbies = [
-    new Hobby('1',['1','2'],'Halo 6','',['Concentracion']),
-    new Hobby('2',['1','2'],'Correr para que nome deje el autobus','',['Concentracion','Condicion'])
+    new Hobby('1',['1','2'],'Halo 6',
+    'https://data.1freewallpapers.com/download/halo-noble-6-1400x1050.jpg',
+    ['Concentracion']),
+    
+    new Hobby('2',['1','2'],'Correr para que nome deje el autobus',
+    'https://correnl.com/wp-content/uploads/2020/06/run-1024x720.jpg',
+    ['Concentracion','Condicion'])
+    
 ];
